@@ -1,0 +1,140 @@
+// dma-core.rdl — DMA Core
+// Helios SoC — SystemRDL register description
+
+addrmap dma_core {
+    name = "DMA Core";
+    desc = "Shared DMA engine control and arbitration.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Engine-level control.";
+
+        field {
+            desc = "Enable the DMA engine.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Arbitration. 0: round-robin, 1: fixed priority, 2: weighted.";
+            sw = rw;
+            hw = r;
+        } ARB_MODE[2:1] = 0x0;
+
+        field {
+            desc = "Gracefully halt at next beat boundary.";
+            sw = rw;
+            hw = r;
+        } HALT[3:3] = 0x0;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Status";
+        desc = "Engine status.";
+
+        field {
+            desc = "Any channel transferring.";
+            sw = r;
+            hw = w;
+        } ACTIVE[0:0] = 0x0;
+
+        field {
+            desc = "Engine is halted.";
+            sw = r;
+            hw = w;
+        } HALTED[1:1] = 0x0;
+
+        field {
+            desc = "Channel index of the last error.";
+            sw = r;
+            hw = w;
+        } ERR_CH[11:8] = 0x0;
+    } STAT @ 0x0004;
+
+    reg {
+        name = "Interrupt Enable";
+        desc = "Per-source interrupt enables.";
+
+        field {
+            desc = "Channel done interrupt enable.";
+            sw = rw;
+            hw = r;
+        } DONE[0:0] = 0x0;
+
+        field {
+            desc = "Bus error interrupt enable.";
+            sw = rw;
+            hw = r;
+        } ERR[1:1] = 0x0;
+
+        field {
+            desc = "Abort complete interrupt enable.";
+            sw = rw;
+            hw = r;
+        } ABORT[2:2] = 0x0;
+    } INT_EN @ 0x0008;
+
+    reg {
+        name = "Interrupt Status";
+        desc = "Sticky interrupt flags. Write 1 to clear.";
+
+        field {
+            desc = "A channel finished its transfer.";
+            sw = rw1c;
+            hw = w;
+        } DONE[0:0] = 0x0;
+
+        field {
+            desc = "A bus error occurred.";
+            sw = rw1c;
+            hw = w;
+        } ERR[1:1] = 0x0;
+
+        field {
+            desc = "An abort completed.";
+            sw = rw1c;
+            hw = w;
+        } ABORT[2:2] = 0x0;
+    } INT_STAT @ 0x000C;
+
+    reg {
+        name = "Priority";
+        desc = "Per-channel arbitration priority.";
+
+        field {
+            desc = "Channel 0 priority.";
+            sw = rw;
+            hw = r;
+        } CH0[1:0] = 0x0;
+
+        field {
+            desc = "Channel 1 priority.";
+            sw = rw;
+            hw = r;
+        } CH1[3:2] = 0x0;
+
+        field {
+            desc = "Channel 2 priority.";
+            sw = rw;
+            hw = r;
+        } CH2[5:4] = 0x0;
+
+        field {
+            desc = "Channel 3 priority.";
+            sw = rw;
+            hw = r;
+        } CH3[7:6] = 0x0;
+    } PRIO @ 0x0010;
+
+    reg {
+        name = "Error Address";
+        desc = "Faulting bus address of the last error.";
+
+        field {
+            desc = "Captured error address.";
+            sw = r;
+            hw = w;
+        } ADDR[31:0] = 0x0;
+    } ERR_ADDR @ 0x0014;
+};

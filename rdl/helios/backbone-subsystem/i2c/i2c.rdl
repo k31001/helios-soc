@@ -1,0 +1,193 @@
+// i2c.rdl — I2C Core
+// Helios SoC — SystemRDL register description
+
+addrmap i2c_core {
+    name = "I2C Core";
+    desc = "I2C master/slave controller registers.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Global control register.";
+
+        field {
+            desc = "Enable the I2C controller.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "1: master mode, 0: slave mode.";
+            sw = rw;
+            hw = r;
+        } MASTER[1:1] = 0x1;
+
+        field {
+            desc = "Bus speed. 0: standard, 1: fast, 2: fast+, 3: high-speed.";
+            sw = rw;
+            hw = r;
+        } SPEED[3:2] = 0x0;
+
+        field {
+            desc = "0: 7-bit addressing, 1: 10-bit addressing.";
+            sw = rw;
+            hw = r;
+        } ADDR_MODE[4:4] = 0x0;
+
+        field {
+            desc = "Allow clock stretching.";
+            sw = rw;
+            hw = r;
+        } STRETCH_EN[5:5] = 0x1;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Status";
+        desc = "Bus and FIFO status.";
+
+        field {
+            desc = "Bus transaction in progress.";
+            sw = r;
+            hw = w;
+        } BUSY[0:0] = 0x0;
+
+        field {
+            desc = "Arbitration lost in master mode.";
+            sw = r;
+            hw = w;
+        } ARB_LOST[1:1] = 0x0;
+
+        field {
+            desc = "Last byte was not acknowledged.";
+            sw = r;
+            hw = w;
+        } NACK[2:2] = 0x0;
+
+        field {
+            desc = "Illegal START/STOP detected.";
+            sw = r;
+            hw = w;
+        } BUS_ERR[3:3] = 0x0;
+
+        field {
+            desc = "TX buffer empty.";
+            sw = r;
+            hw = w;
+        } TX_EMPTY[4:4] = 0x1;
+
+        field {
+            desc = "RX buffer full.";
+            sw = r;
+            hw = w;
+        } RX_FULL[5:5] = 0x0;
+    } STAT @ 0x0004;
+
+    reg {
+        name = "Own Address";
+        desc = "Slave-mode own address.";
+
+        field {
+            desc = "Own address (7 or 10 bit).";
+            sw = rw;
+            hw = r;
+        } ADDR[9:0] = 0x0;
+
+        field {
+            desc = "Respond to own address.";
+            sw = rw;
+            hw = r;
+        } EN[12:12] = 0x0;
+    } OWN_ADDR @ 0x0008;
+
+    reg {
+        name = "Data";
+        desc = "Transmit/receive data window.";
+
+        field {
+            desc = "Write to transmit, read to receive.";
+            sw = rw;
+            hw = r;
+        } DATA[7:0] = 0x0;
+    } DATA @ 0x000C;
+
+    reg {
+        name = "Clock Divider";
+        desc = "SCL timing configuration.";
+
+        field {
+            desc = "SCL low period in ref-clock cycles.";
+            sw = rw;
+            hw = r;
+        } SCL_LOW[7:0] = 0x32;
+
+        field {
+            desc = "SCL high period in ref-clock cycles.";
+            sw = rw;
+            hw = r;
+        } SCL_HIGH[15:8] = 0x32;
+
+        field {
+            desc = "SDA hold time in ref-clock cycles.";
+            sw = rw;
+            hw = r;
+        } SDA_HOLD[19:16] = 0x4;
+    } CLK_DIV @ 0x0010;
+
+    reg {
+        name = "Interrupt Enable";
+        desc = "Per-source interrupt enables.";
+
+        field {
+            desc = "Transfer complete interrupt enable.";
+            sw = rw;
+            hw = r;
+        } DONE[0:0] = 0x0;
+
+        field {
+            desc = "NACK received interrupt enable.";
+            sw = rw;
+            hw = r;
+        } NACK[1:1] = 0x0;
+
+        field {
+            desc = "Arbitration lost interrupt enable.";
+            sw = rw;
+            hw = r;
+        } ARB_LOST[2:2] = 0x0;
+
+        field {
+            desc = "RX data ready interrupt enable.";
+            sw = rw;
+            hw = r;
+        } RX_READY[3:3] = 0x0;
+    } INT_EN @ 0x0014;
+
+    reg {
+        name = "Interrupt Status";
+        desc = "Sticky interrupt flags. Write 1 to clear.";
+
+        field {
+            desc = "Transfer complete.";
+            sw = rw1c;
+            hw = w;
+        } DONE[0:0] = 0x0;
+
+        field {
+            desc = "NACK received.";
+            sw = rw1c;
+            hw = w;
+        } NACK[1:1] = 0x0;
+
+        field {
+            desc = "Arbitration lost.";
+            sw = rw1c;
+            hw = w;
+        } ARB_LOST[2:2] = 0x0;
+
+        field {
+            desc = "RX data ready.";
+            sw = rw1c;
+            hw = w;
+        } RX_READY[3:3] = 0x0;
+    } INT_STAT @ 0x0018;
+};

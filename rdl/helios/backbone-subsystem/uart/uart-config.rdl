@@ -1,0 +1,94 @@
+// uart-config.rdl — UART Config
+// Helios SoC — SystemRDL register description
+
+addrmap uart_config {
+    name = "UART Config";
+    desc = "FIFO, flow-control and timeout configuration of the UART controller.";
+    default regwidth = 32;
+
+    reg {
+        name = "FIFO Control";
+        desc = "FIFO threshold and flush control.";
+
+        field {
+            desc = "TX FIFO interrupt threshold.";
+            sw = rw;
+            hw = r;
+        } TX_THRESH[3:0] = 0x8;
+
+        field {
+            desc = "RX FIFO interrupt threshold.";
+            sw = rw;
+            hw = r;
+        } RX_THRESH[7:4] = 0x8;
+
+        field {
+            desc = "Write 1 to flush the TX FIFO.";
+            sw = w;
+            hw = r;
+        } TX_FLUSH[8:8] = 0x0;
+
+        field {
+            desc = "Write 1 to flush the RX FIFO.";
+            sw = w;
+            hw = r;
+        } RX_FLUSH[9:9] = 0x0;
+    } FIFO_CTRL @ 0x0000;
+
+    reg {
+        name = "FIFO Status";
+        desc = "Current FIFO fill levels.";
+
+        field {
+            desc = "Number of entries in the TX FIFO.";
+            sw = r;
+            hw = w;
+        } TX_LEVEL[4:0] = 0x0;
+
+        field {
+            desc = "Number of entries in the RX FIFO.";
+            sw = r;
+            hw = w;
+        } RX_LEVEL[12:8] = 0x0;
+    } FIFO_STAT @ 0x0004;
+
+    reg {
+        name = "Flow Control";
+        desc = "Hardware flow-control configuration.";
+
+        field {
+            desc = "Enable CTS-based transmit gating.";
+            sw = rw;
+            hw = r;
+        } CTS_EN[0:0] = 0x0;
+
+        field {
+            desc = "Enable RTS generation.";
+            sw = rw;
+            hw = r;
+        } RTS_EN[1:1] = 0x0;
+
+        field {
+            desc = "RX FIFO level that de-asserts RTS.";
+            sw = rw;
+            hw = r;
+        } RTS_THRESH[7:4] = 0xC;
+    } FLOW @ 0x0008;
+
+    reg {
+        name = "RX Timeout";
+        desc = "Idle-time based receive timeout.";
+
+        field {
+            desc = "Timeout in bit periods.";
+            sw = rw;
+            hw = r;
+        } VAL[7:0] = 0x40;
+
+        field {
+            desc = "Enable receive timeout detection.";
+            sw = rw;
+            hw = r;
+        } EN[8:8] = 0x0;
+    } TIMEOUT @ 0x000C;
+};

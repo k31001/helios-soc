@@ -1,0 +1,116 @@
+// trng.rdl — TRNG
+// Helios SoC — SystemRDL register description
+
+addrmap trng {
+    name = "TRNG";
+    desc = "True random number generator with online health tests.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Generator control.";
+
+        field {
+            desc = "Enable entropy collection.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Enable conditioning (AES-CBC-MAC).";
+            sw = rw;
+            hw = r;
+        } COND_EN[1:1] = 0x1;
+
+        field {
+            desc = "Ring-oscillator sample divider.";
+            sw = rw;
+            hw = r;
+        } CLK_DIV[7:4] = 0x4;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Status";
+        desc = "Generator status.";
+
+        field {
+            desc = "Random word available.";
+            sw = r;
+            hw = w;
+        } READY[0:0] = 0x0;
+
+        field {
+            desc = "Health test failure latched.";
+            sw = r;
+            hw = w;
+        } HEALTH_FAIL[1:1] = 0x0;
+
+        field {
+            desc = "Words available in output FIFO.";
+            sw = r;
+            hw = w;
+        } FIFO_LEVEL[11:8] = 0x0;
+    } STAT @ 0x0004;
+
+    reg {
+        name = "Data";
+        desc = "Random data output window.";
+
+        field {
+            desc = "Random word (destructive read).";
+            sw = r;
+            hw = w;
+        } WORD[31:0] = 0x0;
+    } DATA @ 0x0008;
+
+    reg {
+        name = "Health Config";
+        desc = "Online health test thresholds.";
+
+        field {
+            desc = "Repetition count test cutoff.";
+            sw = rw;
+            hw = r;
+        } RCT_THRESH[5:0] = 0x1F;
+
+        field {
+            desc = "Adaptive proportion test cutoff.";
+            sw = rw;
+            hw = r;
+        } APT_THRESH[17:8] = 0x257;
+    } HEALTH @ 0x000C;
+
+    reg {
+        name = "Interrupt Enable";
+        desc = "Per-source interrupt enables.";
+
+        field {
+            desc = "Data ready interrupt enable.";
+            sw = rw;
+            hw = r;
+        } READY[0:0] = 0x0;
+
+        field {
+            desc = "Health failure interrupt enable.";
+            sw = rw;
+            hw = r;
+        } FAIL[1:1] = 0x0;
+    } INT_EN @ 0x0010;
+
+    reg {
+        name = "Interrupt Status";
+        desc = "Sticky interrupt flags. Write 1 to clear.";
+
+        field {
+            desc = "Random data became available.";
+            sw = rw1c;
+            hw = w;
+        } READY[0:0] = 0x0;
+
+        field {
+            desc = "A health test failed.";
+            sw = rw1c;
+            hw = w;
+        } FAIL[1:1] = 0x0;
+    } INT_STAT @ 0x0014;
+};

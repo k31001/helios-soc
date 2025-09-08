@@ -1,0 +1,122 @@
+// dma-channel.rdl — DMA Channel
+// Helios SoC — SystemRDL register description
+
+addrmap dma_channel {
+    name = "DMA Channel";
+    desc = "Per-channel transfer configuration (one instance per channel).";
+    default regwidth = 32;
+
+    reg {
+        name = "Channel Config";
+        desc = "Transfer shape configuration.";
+
+        field {
+            desc = "Arm the channel.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Direction. 0: mem-to-mem, 1: mem-to-periph, 2: periph-to-mem.";
+            sw = rw;
+            hw = r;
+        } DIR[2:1] = 0x0;
+
+        field {
+            desc = "Increment source address.";
+            sw = rw;
+            hw = r;
+        } SRC_INC[3:3] = 0x1;
+
+        field {
+            desc = "Increment destination address.";
+            sw = rw;
+            hw = r;
+        } DST_INC[4:4] = 0x1;
+
+        field {
+            desc = "Burst length, 2^N beats.";
+            sw = rw;
+            hw = r;
+        } BURST[7:5] = 0x2;
+
+        field {
+            desc = "Beat width. 0: 8-bit, 1: 16-bit, 2: 32-bit.";
+            sw = rw;
+            hw = r;
+        } WIDTH[9:8] = 0x2;
+    } CH_CFG @ 0x0000;
+
+    reg {
+        name = "Source Address";
+        desc = "Transfer source address.";
+
+        field {
+            desc = "Byte-aligned source address.";
+            sw = rw;
+            hw = r;
+        } ADDR[31:0] = 0x0;
+    } CH_SRC @ 0x0004;
+
+    reg {
+        name = "Destination Address";
+        desc = "Transfer destination address.";
+
+        field {
+            desc = "Byte-aligned destination address.";
+            sw = rw;
+            hw = r;
+        } ADDR[31:0] = 0x0;
+    } CH_DST @ 0x0008;
+
+    reg {
+        name = "Length";
+        desc = "Transfer length.";
+
+        field {
+            desc = "Number of bytes to move.";
+            sw = rw;
+            hw = r;
+        } BYTES[23:0] = 0x0;
+    } CH_LEN @ 0x000C;
+
+    reg {
+        name = "Channel Status";
+        desc = "Per-channel live status.";
+
+        field {
+            desc = "Channel transferring.";
+            sw = r;
+            hw = w;
+        } BUSY[0:0] = 0x0;
+
+        field {
+            desc = "Channel finished.";
+            sw = r;
+            hw = w;
+        } DONE[1:1] = 0x0;
+
+        field {
+            desc = "Channel faulted.";
+            sw = r;
+            hw = w;
+        } ERR[2:2] = 0x0;
+
+        field {
+            desc = "Remaining bytes.";
+            sw = r;
+            hw = w;
+        } REMAIN[31:8] = 0x0;
+    } CH_STAT @ 0x0010;
+
+    reg {
+        name = "SG Descriptor";
+        desc = "Scatter-gather descriptor table — one buffer pointer per slot.";
+
+        field {
+            desc = "Buffer address for this descriptor slot.";
+            sw = rw;
+            hw = r;
+        } ADDR[31:0] = 0x0;
+    } SG_DESC[8] @ 0x0014 += 0x4;
+};

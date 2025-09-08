@@ -1,0 +1,104 @@
+// rtc.rdl — RTC
+// Helios SoC — SystemRDL register description
+
+addrmap rtc {
+    name = "RTC";
+    desc = "Real-time clock with alarm and digital calibration.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "RTC control.";
+
+        field {
+            desc = "Enable the RTC counter.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Enable alarm comparison.";
+            sw = rw;
+            hw = r;
+        } ALARM_EN[1:1] = 0x0;
+
+        field {
+            desc = "Enable periodic tick interrupt.";
+            sw = rw;
+            hw = r;
+        } TICK_EN[2:2] = 0x0;
+
+        field {
+            desc = "Enable digital calibration.";
+            sw = rw;
+            hw = r;
+        } CAL_EN[3:3] = 0x0;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Time";
+        desc = "Seconds counter.";
+
+        field {
+            desc = "Seconds since epoch.";
+            sw = r;
+            hw = w;
+        } SEC[31:0] = 0x0;
+    } TIME @ 0x0004;
+
+    reg {
+        name = "Sub-second";
+        desc = "Sub-second counter.";
+
+        field {
+            desc = "Sub-second count (32768 Hz).";
+            sw = r;
+            hw = w;
+        } VAL[14:0] = 0x0;
+    } SUBSEC @ 0x0008;
+
+    reg {
+        name = "Alarm";
+        desc = "Alarm compare value.";
+
+        field {
+            desc = "Alarm seconds value.";
+            sw = rw;
+            hw = r;
+        } SEC[31:0] = 0x0;
+    } ALARM @ 0x000C;
+
+    reg {
+        name = "Calibration";
+        desc = "Digital frequency calibration.";
+
+        field {
+            desc = "Correction magnitude in ppm.";
+            sw = rw;
+            hw = r;
+        } PPM[8:0] = 0x0;
+
+        field {
+            desc = "Correction direction. 0: slow down, 1: speed up.";
+            sw = rw;
+            hw = r;
+        } DIR[12:12] = 0x0;
+    } CALIB @ 0x0010;
+
+    reg {
+        name = "Interrupt Status";
+        desc = "Sticky interrupt flags. Write 1 to clear.";
+
+        field {
+            desc = "Alarm matched.";
+            sw = rw1c;
+            hw = w;
+        } ALARM[0:0] = 0x0;
+
+        field {
+            desc = "Periodic tick fired.";
+            sw = rw1c;
+            hw = w;
+        } TICK[1:1] = 0x0;
+    } INT_STAT @ 0x0014;
+};

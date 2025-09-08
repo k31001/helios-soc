@@ -1,0 +1,177 @@
+// uart-common.rdl — UART Common
+// Helios SoC — SystemRDL register description
+
+addrmap uart_common {
+    name = "UART Common";
+    desc = "Core control, status, interrupt and baud-rate registers of the UART controller.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Global control register.";
+
+        field {
+            desc = "Enable the UART controller.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Operating mode. 0: normal, 1: IrDA, 2: RS-485.";
+            sw = rw;
+            hw = r;
+        } MODE[2:1] = 0x0;
+
+        field {
+            desc = "Parity selection. 0: none, 1: even, 2: odd.";
+            sw = rw;
+            hw = r;
+        } PARITY[4:3] = 0x0;
+
+        field {
+            desc = "Stop bits. 0: one, 1: two.";
+            sw = rw;
+            hw = r;
+        } STOP_BITS[5:5] = 0x0;
+
+        field {
+            desc = "Internal loopback enable for self-test.";
+            sw = rw;
+            hw = r;
+        } LOOPBACK[6:6] = 0x0;
+
+        field {
+            desc = "Transmitter enable.";
+            sw = rw;
+            hw = r;
+        } TX_EN[8:8] = 0x1;
+
+        field {
+            desc = "Receiver enable.";
+            sw = rw;
+            hw = r;
+        } RX_EN[9:9] = 0x1;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Status";
+        desc = "Live controller status.";
+
+        field {
+            desc = "Transmitter shift register busy.";
+            sw = r;
+            hw = w;
+        } TX_BUSY[0:0] = 0x0;
+
+        field {
+            desc = "Receiver shift register busy.";
+            sw = r;
+            hw = w;
+        } RX_BUSY[1:1] = 0x0;
+
+        field {
+            desc = "TX FIFO empty.";
+            sw = r;
+            hw = w;
+        } TX_EMPTY[2:2] = 0x1;
+
+        field {
+            desc = "RX FIFO full.";
+            sw = r;
+            hw = w;
+        } RX_FULL[3:3] = 0x0;
+
+        field {
+            desc = "Parity error detected.";
+            sw = r;
+            hw = w;
+        } PARITY_ERR[4:4] = 0x0;
+
+        field {
+            desc = "Framing error detected.";
+            sw = r;
+            hw = w;
+        } FRAME_ERR[5:5] = 0x0;
+
+        field {
+            desc = "RX overrun occurred.";
+            sw = r;
+            hw = w;
+        } OVERRUN[6:6] = 0x0;
+    } STAT @ 0x0004;
+
+    reg {
+        name = "Interrupt Enable";
+        desc = "Per-source interrupt enables.";
+
+        field {
+            desc = "Transmit complete interrupt enable.";
+            sw = rw;
+            hw = r;
+        } TX_DONE[0:0] = 0x0;
+
+        field {
+            desc = "Receive data ready interrupt enable.";
+            sw = rw;
+            hw = r;
+        } RX_READY[1:1] = 0x0;
+
+        field {
+            desc = "Receive timeout interrupt enable.";
+            sw = rw;
+            hw = r;
+        } RX_TIMEOUT[2:2] = 0x0;
+
+        field {
+            desc = "Error (parity/frame/overrun) interrupt enable.";
+            sw = rw;
+            hw = r;
+        } ERR[3:3] = 0x0;
+    } INT_EN @ 0x0008;
+
+    reg {
+        name = "Interrupt Status";
+        desc = "Sticky interrupt flags. Write 1 to clear.";
+
+        field {
+            desc = "Transmit complete.";
+            sw = rw1c;
+            hw = w;
+        } TX_DONE[0:0] = 0x0;
+
+        field {
+            desc = "Receive data ready.";
+            sw = rw1c;
+            hw = w;
+        } RX_READY[1:1] = 0x0;
+
+        field {
+            desc = "Receive timeout expired.";
+            sw = rw1c;
+            hw = w;
+        } RX_TIMEOUT[2:2] = 0x0;
+
+        field {
+            desc = "Line error occurred.";
+            sw = rw1c;
+            hw = w;
+        } ERR[3:3] = 0x0;
+    } INT_STAT @ 0x000C;
+
+    reg {
+        name = "Baud Rate";
+        desc = "Baud-rate generator configuration.";
+
+        field {
+            desc = "Integer divider from the UART reference clock.";
+            sw = rw;
+            hw = r;
+        } DIV[15:0] = 0x8B;
+
+        field {
+            desc = "Fractional divider in 1/16 units.";
+            sw = rw;
+            hw = r;
+        } FRAC[19:16] = 0x0;
+    } BAUD @ 0x0010;
+};

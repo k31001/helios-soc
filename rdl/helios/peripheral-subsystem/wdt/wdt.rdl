@@ -1,0 +1,98 @@
+// wdt.rdl — Watchdog
+// Helios SoC — SystemRDL register description
+
+addrmap wdt {
+    name = "Watchdog";
+    desc = "System watchdog timer with windowed mode and lock protection.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Watchdog control.";
+
+        field {
+            desc = "Enable the watchdog.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Assert system reset on timeout.";
+            sw = rw;
+            hw = r;
+        } RESET_EN[1:1] = 0x1;
+
+        field {
+            desc = "Pause while a debugger is attached.";
+            sw = rw;
+            hw = r;
+        } PAUSE_DBG[2:2] = 0x1;
+
+        field {
+            desc = "Enable windowed-kick mode.";
+            sw = rw;
+            hw = r;
+        } WIN_EN[3:3] = 0x0;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Load";
+        desc = "Timeout reload value.";
+
+        field {
+            desc = "Timeout in slow-clock cycles.";
+            sw = rw;
+            hw = r;
+        } VAL[23:0] = 0xFFFFFF;
+    } LOAD @ 0x0004;
+
+    reg {
+        name = "Value";
+        desc = "Live countdown value.";
+
+        field {
+            desc = "Current count.";
+            sw = r;
+            hw = w;
+        } VAL[23:0] = 0x0;
+    } VALUE @ 0x0008;
+
+    reg {
+        name = "Kick";
+        desc = "Service register.";
+
+        field {
+            desc = "Write 0x5A5A to service the watchdog.";
+            sw = w;
+            hw = r;
+        } KEY[15:0] = 0x0;
+    } KICK @ 0x000C;
+
+    reg {
+        name = "Lock";
+        desc = "Configuration lock.";
+
+        field {
+            desc = "Write 0xACCE to toggle the lock.";
+            sw = w;
+            hw = r;
+        } KEY[15:0] = 0x0;
+
+        field {
+            desc = "Configuration is locked.";
+            sw = r;
+            hw = w;
+        } LOCKED[16:16] = 0x0;
+    } LOCK @ 0x0010;
+
+    reg {
+        name = "Interrupt Status";
+        desc = "Sticky interrupt flags. Write 1 to clear.";
+
+        field {
+            desc = "Pre-timeout warning fired.";
+            sw = rw1c;
+            hw = w;
+        } PRE_TIMEOUT[0:0] = 0x0;
+    } INT_STAT @ 0x0014;
+};

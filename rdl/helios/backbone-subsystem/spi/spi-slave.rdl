@@ -1,0 +1,71 @@
+// spi-slave.rdl — SPI Slave
+// Helios SoC — SystemRDL register description
+
+addrmap spi_slave {
+    name = "SPI Slave";
+    desc = "SPI slave endpoint registers.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Slave control register.";
+
+        field {
+            desc = "Enable the SPI slave.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Expected clock polarity.";
+            sw = rw;
+            hw = r;
+        } CPOL[1:1] = 0x0;
+
+        field {
+            desc = "Expected clock phase.";
+            sw = rw;
+            hw = r;
+        } CPHA[2:2] = 0x0;
+
+        field {
+            desc = "Word length minus one.";
+            sw = rw;
+            hw = r;
+        } WORD_LEN[7:3] = 0x7;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Status";
+        desc = "Slave status.";
+
+        field {
+            desc = "Chip-select currently asserted.";
+            sw = r;
+            hw = w;
+        } SELECTED[0:0] = 0x0;
+
+        field {
+            desc = "RX buffer full.";
+            sw = r;
+            hw = w;
+        } RX_FULL[1:1] = 0x0;
+
+        field {
+            desc = "TX buffer empty.";
+            sw = r;
+            hw = w;
+        } TX_EMPTY[2:2] = 0x1;
+    } STAT @ 0x0004;
+
+    reg {
+        name = "Data";
+        desc = "Transmit/receive data window.";
+
+        field {
+            desc = "Write to stage TX word, read to fetch RX word.";
+            sw = rw;
+            hw = r;
+        } DATA[31:0] = 0x0;
+    } DATA @ 0x0008;
+};

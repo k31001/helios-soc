@@ -1,0 +1,133 @@
+// timer-core.rdl — Timer Core
+// Helios SoC — SystemRDL register description
+
+addrmap timer_core {
+    name = "Timer Core";
+    desc = "General-purpose 32-bit timer with two match channels.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Timer control.";
+
+        field {
+            desc = "Enable the counter.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Stop after first wrap/match.";
+            sw = rw;
+            hw = r;
+        } ONESHOT[1:1] = 0x0;
+
+        field {
+            desc = "Count direction. 0: up, 1: down.";
+            sw = rw;
+            hw = r;
+        } DIR[2:2] = 0x0;
+
+        field {
+            desc = "Clock prescaler, 2^N.";
+            sw = rw;
+            hw = r;
+        } PRESCALE[7:4] = 0x0;
+
+        field {
+            desc = "Clock source. 0: bus, 1: ext, 2: slow.";
+            sw = rw;
+            hw = r;
+        } CLK_SEL[9:8] = 0x0;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Load";
+        desc = "Counter reload value.";
+
+        field {
+            desc = "Value loaded on wrap or restart.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } LOAD @ 0x0004;
+
+    reg {
+        name = "Value";
+        desc = "Live counter value.";
+
+        field {
+            desc = "Current count.";
+            sw = r;
+            hw = w;
+        } VAL[31:0] = 0x0;
+    } VALUE @ 0x0008;
+
+    reg {
+        name = "Match 0";
+        desc = "Match channel 0 compare value.";
+
+        field {
+            desc = "Compare value.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } MATCH0 @ 0x000C;
+
+    reg {
+        name = "Match 1";
+        desc = "Match channel 1 compare value.";
+
+        field {
+            desc = "Compare value.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } MATCH1 @ 0x0010;
+
+    reg {
+        name = "Interrupt Enable";
+        desc = "Per-source interrupt enables.";
+
+        field {
+            desc = "Overflow interrupt enable.";
+            sw = rw;
+            hw = r;
+        } OVF[0:0] = 0x0;
+
+        field {
+            desc = "Match 0 interrupt enable.";
+            sw = rw;
+            hw = r;
+        } MATCH0[1:1] = 0x0;
+
+        field {
+            desc = "Match 1 interrupt enable.";
+            sw = rw;
+            hw = r;
+        } MATCH1[2:2] = 0x0;
+    } INT_EN @ 0x0014;
+
+    reg {
+        name = "Interrupt Status";
+        desc = "Sticky interrupt flags. Write 1 to clear.";
+
+        field {
+            desc = "Counter overflowed.";
+            sw = rw1c;
+            hw = w;
+        } OVF[0:0] = 0x0;
+
+        field {
+            desc = "Match 0 hit.";
+            sw = rw1c;
+            hw = w;
+        } MATCH0[1:1] = 0x0;
+
+        field {
+            desc = "Match 1 hit.";
+            sw = rw1c;
+            hw = w;
+        } MATCH1[2:2] = 0x0;
+    } INT_STAT @ 0x0018;
+};

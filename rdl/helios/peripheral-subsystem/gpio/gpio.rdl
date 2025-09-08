@@ -1,0 +1,107 @@
+// gpio.rdl — GPIO
+// Helios SoC — SystemRDL register description
+
+addrmap gpio {
+    name = "GPIO";
+    desc = "General-purpose I/O bank (32 pins per bank).";
+    default regwidth = 32;
+
+    reg {
+        name = "Input Data";
+        desc = "Synchronized pin input values.";
+
+        field {
+            desc = "Per-pin input level.";
+            sw = r;
+            hw = w;
+        } VAL[31:0] = 0x0;
+    } DATA_IN @ 0x0000;
+
+    reg {
+        name = "Output Data";
+        desc = "Output values for pins configured as outputs.";
+
+        field {
+            desc = "Per-pin output level.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } DATA_OUT @ 0x0004;
+
+    reg {
+        name = "Direction";
+        desc = "Per-pin direction. 0: input, 1: output.";
+
+        field {
+            desc = "Per-pin direction bit.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } DIR @ 0x0008;
+
+    reg {
+        name = "Pull Enable";
+        desc = "Per-pin pull resistor enable.";
+
+        field {
+            desc = "Per-pin pull enable.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } PULL_EN @ 0x000C;
+
+    reg {
+        name = "Pull Select";
+        desc = "Per-pin pull direction. 0: down, 1: up.";
+
+        field {
+            desc = "Per-pin pull selection.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } PULL_SEL @ 0x0010;
+
+    reg {
+        name = "Interrupt Enable";
+        desc = "Per-pin interrupt enable.";
+
+        field {
+            desc = "Per-pin interrupt enable.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } INT_EN @ 0x0014;
+
+    reg {
+        name = "Interrupt Type";
+        desc = "Per-pin trigger type. 0: level, 1: edge.";
+
+        field {
+            desc = "Per-pin trigger type.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } INT_TYPE @ 0x0018;
+
+    reg {
+        name = "Interrupt Polarity";
+        desc = "Per-pin polarity. 0: low/falling, 1: high/rising.";
+
+        field {
+            desc = "Per-pin polarity.";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } INT_POL @ 0x001C;
+
+    reg {
+        name = "Interrupt Status";
+        desc = "Per-pin sticky interrupt flags. Write 1 to clear.";
+
+        field {
+            desc = "Per-pin interrupt pending.";
+            sw = rw1c;
+            hw = w;
+        } VAL[31:0] = 0x0;
+    } INT_STAT @ 0x0020;
+};

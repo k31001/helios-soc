@@ -1,0 +1,199 @@
+// crypto-aes.rdl — AES Engine
+// Helios SoC — SystemRDL register description
+
+addrmap crypto_aes {
+    name = "AES Engine";
+    desc = "AES block cipher engine with key-ladder integration.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Cipher control.";
+
+        field {
+            desc = "Enable the AES engine.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Cipher mode. 0: ECB, 1: CBC, 2: CTR, 3: GCM, 4: XTS.";
+            sw = rw;
+            hw = r;
+        } MODE[3:1] = 0x0;
+
+        field {
+            desc = "Key size. 0: 128, 1: 192, 2: 256.";
+            sw = rw;
+            hw = r;
+        } KEY_SIZE[5:4] = 0x2;
+
+        field {
+            desc = "1: decrypt, 0: encrypt.";
+            sw = rw;
+            hw = r;
+        } DECRYPT[6:6] = 0x0;
+
+        field {
+            desc = "Byte-swap data words.";
+            sw = rw;
+            hw = r;
+        } BYTE_SWAP[7:7] = 0x0;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Status";
+        desc = "Engine status.";
+
+        field {
+            desc = "Operation in progress.";
+            sw = r;
+            hw = w;
+        } BUSY[0:0] = 0x0;
+
+        field {
+            desc = "Block complete.";
+            sw = r;
+            hw = w;
+        } DONE[1:1] = 0x0;
+
+        field {
+            desc = "Configuration error.";
+            sw = r;
+            hw = w;
+        } ERR[2:2] = 0x0;
+    } STAT @ 0x0004;
+
+    reg {
+        name = "Key Control";
+        desc = "Key-ladder slot control.";
+
+        field {
+            desc = "Key ladder slot select.";
+            sw = rw;
+            hw = r;
+        } SLOT[2:0] = 0x0;
+
+        field {
+            desc = "Strobe: load key from selected slot.";
+            sw = w;
+            hw = r;
+        } LOAD[4:4] = 0x0;
+
+        field {
+            desc = "Strobe: zeroize working key.";
+            sw = w;
+            hw = r;
+        } CLEAR[5:5] = 0x0;
+
+        field {
+            desc = "Selected slot is locked.";
+            sw = r;
+            hw = w;
+        } LOCKED[8:8] = 0x0;
+    } KEY_CTRL @ 0x0008;
+
+    reg {
+        name = "IV Control";
+        desc = "Initialization vector control.";
+
+        field {
+            desc = "Strobe: latch IV registers.";
+            sw = w;
+            hw = r;
+        } LOAD[0:0] = 0x0;
+
+        field {
+            desc = "IV source. 0: software, 1: RNG, 2: chained.";
+            sw = rw;
+            hw = r;
+        } IV_SEL[5:4] = 0x0;
+    } IV_CTRL @ 0x000C;
+
+    reg {
+        name = "Data In";
+        desc = "Plaintext/ciphertext input window.";
+
+        field {
+            desc = "Input data word.";
+            sw = w;
+            hw = r;
+        } WORD[31:0] = 0x0;
+    } DATA_IN @ 0x0010;
+
+    reg {
+        name = "Data Out";
+        desc = "Result output window.";
+
+        field {
+            desc = "Output data word.";
+            sw = r;
+            hw = w;
+        } WORD[31:0] = 0x0;
+    } DATA_OUT @ 0x0014;
+
+    reg {
+        name = "Suspend";
+        desc = "Context save/restore for preemption.";
+
+        field {
+            desc = "Request context suspend.";
+            sw = rw;
+            hw = r;
+        } REQ[0:0] = 0x0;
+
+        field {
+            desc = "Suspend acknowledged.";
+            sw = r;
+            hw = w;
+        } ACK[1:1] = 0x0;
+
+        field {
+            desc = "Context save slot.";
+            sw = rw;
+            hw = r;
+        } CTX_SLOT[5:4] = 0x0;
+    } SUSPEND @ 0x0018;
+
+    regfile {
+
+        reg {
+            name = "IV Low";
+            desc = "Low 32 bits of the saved initialization vector.";
+
+            field {
+                desc = "IV[31:0].";
+                sw = rw;
+                hw = r;
+            } VAL[31:0] = 0x0;
+        } IV_LO @ 0x0000;
+
+        reg {
+            name = "IV High";
+            desc = "High 32 bits of the saved initialization vector.";
+
+            field {
+                desc = "IV[63:32].";
+                sw = rw;
+                hw = r;
+            } VAL[31:0] = 0x0;
+        } IV_HI @ 0x0004;
+
+        reg {
+            name = "Context Meta";
+            desc = "Saved context metadata.";
+
+            field {
+                desc = "Key-ladder slot bound to this context.";
+                sw = rw;
+                hw = r;
+            } KEY_SLOT[2:0] = 0x0;
+
+            field {
+                desc = "Context slot holds a live context.";
+                sw = r;
+                hw = w;
+            } VALID[4:4] = 0x0;
+        } META @ 0x0008;
+    } CTX[4] @ 0x0040 += 0x10;
+};

@@ -1,0 +1,98 @@
+// crypto-sha.rdl — SHA Engine
+// Helios SoC — SystemRDL register description
+
+addrmap crypto_sha {
+    name = "SHA Engine";
+    desc = "SHA hash engine with HMAC support.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Hash control.";
+
+        field {
+            desc = "Enable the SHA engine.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Hash mode. 0: SHA-1, 1: SHA-224, 2: SHA-256, 3: SHA-512.";
+            sw = rw;
+            hw = r;
+        } MODE[2:1] = 0x2;
+
+        field {
+            desc = "Enable HMAC keyed mode.";
+            sw = rw;
+            hw = r;
+        } HMAC_EN[3:3] = 0x0;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Status";
+        desc = "Engine status.";
+
+        field {
+            desc = "Digest round in progress.";
+            sw = r;
+            hw = w;
+        } BUSY[0:0] = 0x0;
+
+        field {
+            desc = "Digest ready.";
+            sw = r;
+            hw = w;
+        } DONE[1:1] = 0x0;
+    } STAT @ 0x0004;
+
+    reg {
+        name = "Data In";
+        desc = "Message word input window.";
+
+        field {
+            desc = "Message data word.";
+            sw = w;
+            hw = r;
+        } WORD[31:0] = 0x0;
+    } DATA_IN @ 0x0008;
+
+    reg {
+        name = "Message Length Low";
+        desc = "Total message length, low word.";
+
+        field {
+            desc = "Bit length [31:0].";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } MSG_LEN_LO @ 0x000C;
+
+    reg {
+        name = "Message Length High";
+        desc = "Total message length, high word.";
+
+        field {
+            desc = "Bit length [63:32].";
+            sw = rw;
+            hw = r;
+        } VAL[31:0] = 0x0;
+    } MSG_LEN_HI @ 0x0010;
+
+    reg {
+        name = "Digest Index";
+        desc = "Digest word read index.";
+
+        field {
+            desc = "Digest word index for reads.";
+            sw = rw;
+            hw = r;
+        } IDX[2:0] = 0x0;
+
+        field {
+            desc = "Auto-increment index on read.";
+            sw = rw;
+            hw = r;
+        } AUTO_INC[4:4] = 0x1;
+    } DIGEST_IDX @ 0x0014;
+};

@@ -1,0 +1,139 @@
+// otp.rdl — OTP Controller
+// Helios SoC — SystemRDL register description
+
+addrmap otp_ctrl {
+    name = "OTP Controller";
+    desc = "One-time-programmable fuse macro controller.";
+    default regwidth = 32;
+
+    reg {
+        name = "Control";
+        desc = "Access control.";
+
+        field {
+            desc = "Enable the OTP controller.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Arm programming mode.";
+            sw = rw;
+            hw = r;
+        } PROG_EN[1:1] = 0x0;
+
+        field {
+            desc = "Enable ECC correction on reads.";
+            sw = rw;
+            hw = r;
+        } ECC_EN[2:2] = 0x1;
+    } CTRL @ 0x0000;
+
+    reg {
+        name = "Status";
+        desc = "Operation status.";
+
+        field {
+            desc = "Read/program in progress.";
+            sw = r;
+            hw = w;
+        } BUSY[0:0] = 0x0;
+
+        field {
+            desc = "Programming pulse complete.";
+            sw = r;
+            hw = w;
+        } PROG_DONE[1:1] = 0x0;
+
+        field {
+            desc = "Uncorrectable ECC error.";
+            sw = r;
+            hw = w;
+        } ECC_ERR[2:2] = 0x0;
+
+        field {
+            desc = "Write to a locked region was rejected.";
+            sw = r;
+            hw = w;
+        } LOCK_ERR[3:3] = 0x0;
+    } STAT @ 0x0004;
+
+    reg {
+        name = "Address";
+        desc = "Fuse word address.";
+
+        field {
+            desc = "Word address into the fuse array.";
+            sw = rw;
+            hw = r;
+        } ADDR[11:0] = 0x0;
+    } ADDR @ 0x0008;
+
+    reg {
+        name = "Read Data";
+        desc = "Read data window.";
+
+        field {
+            desc = "Fuse word read result.";
+            sw = r;
+            hw = w;
+        } DATA[31:0] = 0x0;
+    } RDATA @ 0x000C;
+
+    reg {
+        name = "Write Data";
+        desc = "Program data window.";
+
+        field {
+            desc = "Fuse word to program.";
+            sw = rw;
+            hw = r;
+        } DATA[31:0] = 0x0;
+    } WDATA @ 0x0010;
+
+    reg {
+        name = "Program Key";
+        desc = "Programming arm key.";
+
+        field {
+            desc = "Write 0x50524F47 to arm a program pulse.";
+            sw = w;
+            hw = r;
+        } KEY[31:0] = 0x0;
+    } PROG_KEY @ 0x0014;
+
+    reg {
+        name = "Region Lock";
+        desc = "Per-region write locks (sticky until reset).";
+
+        field {
+            desc = "Lock region 0 (boot).";
+            sw = rw;
+            hw = r;
+        } REGION0[0:0] = 0x0;
+
+        field {
+            desc = "Lock region 1 (keys).";
+            sw = rw;
+            hw = r;
+        } REGION1[1:1] = 0x0;
+
+        field {
+            desc = "Lock region 2 (calibration).";
+            sw = rw;
+            hw = r;
+        } REGION2[2:2] = 0x0;
+
+        field {
+            desc = "Lock region 3 (user).";
+            sw = rw;
+            hw = r;
+        } REGION3[3:3] = 0x0;
+
+        field {
+            desc = "Lock everything including this register.";
+            sw = rw;
+            hw = r;
+        } GLOBAL[8:8] = 0x0;
+    } LOCK @ 0x0018;
+};

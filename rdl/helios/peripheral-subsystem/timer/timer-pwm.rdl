@@ -1,0 +1,76 @@
+// timer-pwm.rdl — Timer PWM
+// Helios SoC — SystemRDL register description
+
+addrmap timer_pwm {
+    name = "Timer PWM";
+    desc = "PWM output stage attached to the timer core.";
+    default regwidth = 32;
+
+    reg {
+        name = "PWM Control";
+        desc = "PWM output control.";
+
+        field {
+            desc = "Enable PWM output.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Output polarity.";
+            sw = rw;
+            hw = r;
+        } POL[1:1] = 0x0;
+
+        field {
+            desc = "0: edge aligned, 1: center aligned.";
+            sw = rw;
+            hw = r;
+        } ALIGN[2:2] = 0x0;
+
+        field {
+            desc = "Pin level while disabled.";
+            sw = rw;
+            hw = r;
+        } IDLE_STATE[3:3] = 0x0;
+    } PWM_CTRL @ 0x0000;
+
+    reg {
+        name = "Period";
+        desc = "PWM period.";
+
+        field {
+            desc = "Period in timer ticks.";
+            sw = rw;
+            hw = r;
+        } VAL[15:0] = 0x3FF;
+    } PERIOD @ 0x0004;
+
+    reg {
+        name = "Duty";
+        desc = "PWM duty cycle.";
+
+        field {
+            desc = "High time in timer ticks.";
+            sw = rw;
+            hw = r;
+        } VAL[15:0] = 0x1FF;
+    } DUTY @ 0x0008;
+
+    reg {
+        name = "Deadtime";
+        desc = "Complementary output deadtime.";
+
+        field {
+            desc = "Rising-edge deadtime in ticks.";
+            sw = rw;
+            hw = r;
+        } RISE[7:0] = 0x0;
+
+        field {
+            desc = "Falling-edge deadtime in ticks.";
+            sw = rw;
+            hw = r;
+        } FALL[15:8] = 0x0;
+    } DEADTIME @ 0x000C;
+};
