@@ -68,6 +68,7 @@ class TimerHal {
 
     /**
      * @brief Configure the PWM output stage.
+     * @deprecated Use SetDeadtime() instead.
      * @param config Polarity, alignment and deadtime.
      * @return HalStatus::Ok on success.
      */
@@ -80,6 +81,14 @@ class TimerHal {
      * @note Takes effect at the next period boundary.
      */
     HalStatus SetPwmDuty(uint16_t duty);
+
+    /**
+     * @brief Tune complementary output deadtime.
+     * @param rise Rising-edge deadtime.
+     * @param fall Falling-edge deadtime.
+     * @return HalStatus::Ok on success.
+     */
+    HalStatus SetDeadtime(uint8_t rise, uint8_t fall);
 
 };
 

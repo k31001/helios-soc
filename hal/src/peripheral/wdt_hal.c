@@ -21,7 +21,7 @@ HalStatus WdtHal::Kick() {
     return HalStatus::Ok;
 }
 
-HalStatus WdtHal::SetTimeout(uint32_t timeout_ms) {
+HalStatus WdtHal::SetTimeout(uint64_t timeout_ms) {
     WDT->CTRL = static_cast<uint32_t>(timeout_ms);
     return HalStatus::Ok;
 }

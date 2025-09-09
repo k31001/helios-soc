@@ -58,4 +58,9 @@ HalStatus TimerHal::SetPwmDuty(uint16_t duty) {
     return HalStatus::Ok;
 }
 
+HalStatus TimerHal::SetDeadtime(uint8_t rise, uint8_t fall) {
+    TIMER->DEADTIME = static_cast<uint32_t>(rise);
+    return HalStatus::Ok;
+}
+
 }  // namespace helios::hal

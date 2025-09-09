@@ -45,7 +45,7 @@ class WdtHal {
      * @param timeout_ms Timeout in milliseconds.
      * @return HalStatus::Ok on success.
      */
-    HalStatus SetTimeout(uint32_t timeout_ms);
+    HalStatus SetTimeout(uint64_t timeout_ms);
 
     /**
      * @brief Lock the configuration until the next system reset.
