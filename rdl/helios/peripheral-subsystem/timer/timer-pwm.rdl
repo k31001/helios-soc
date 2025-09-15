@@ -54,7 +54,7 @@ addrmap timer_pwm {
             desc = "High time in timer ticks.";
             sw = rw;
             hw = r;
-        } VAL[15:0] = 0x1FF;
+        } VAL[16:0] = 0x1FF;
     } DUTY @ 0x0008;
 
     reg {
