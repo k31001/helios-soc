@@ -189,5 +189,11 @@ addrmap i2c_core {
             sw = rw1c;
             hw = w;
         } RX_READY[3:3] = 0x0;
+
+        field {
+            desc = "Respond to general-call address.";
+            sw = rw;
+            hw = r;
+        } GCALL_EN[4:4] = 0x0;
     } INT_STAT @ 0x0018;
 };
