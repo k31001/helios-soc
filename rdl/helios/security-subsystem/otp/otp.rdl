@@ -136,4 +136,21 @@ addrmap otp_ctrl {
             hw = r;
         } GLOBAL[8:8] = 0x0;
     } LOCK @ 0x0018;
+
+    reg {
+        name = "ECC Statistics";
+        desc = "ECC event counters.";
+
+        field {
+            desc = "Corrected single-bit errors.";
+            sw = r;
+            hw = w;
+        } SBE_CNT[7:0] = 0x0;
+
+        field {
+            desc = "Detected double-bit errors.";
+            sw = r;
+            hw = w;
+        } DBE_CNT[15:8] = 0x0;
+    } ECC_STAT @ 0x001C;
 };

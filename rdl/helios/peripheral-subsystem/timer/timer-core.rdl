@@ -26,7 +26,7 @@ addrmap timer_core {
             desc = "Count direction. 0: up, 1: down.";
             sw = rw;
             hw = r;
-        } DIR[2:2] = 0x0;
+        } DIR[3:2] = 0x0;
 
         field {
             desc = "Clock prescaler, 2^N.";
