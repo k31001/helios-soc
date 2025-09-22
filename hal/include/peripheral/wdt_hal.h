@@ -20,7 +20,7 @@ namespace helios::hal {
 class WdtHal {
  public:
     /**
-     * @brief Initialize the watchdog (does not start it).
+     * @brief Initialize the watchdog (does not start it) (thread-safe).
      * @param config Timeout and reset behaviour.
      * @return HalStatus::Ok on success.
      */
