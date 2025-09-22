@@ -22,7 +22,7 @@ addrmap gpio {
         desc = "Output values for pins configured as outputs.";
 
         field {
-            desc = "Per-pin output level.";
+            desc = "Per-pin output level. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } VAL[31:0] = 0x0;

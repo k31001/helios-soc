@@ -25,7 +25,7 @@ HalStatus I2cHal::MasterWrite(uint16_t addr, const uint8_t* data, size_t len) {
     return HalStatus::Ok;
 }
 
-HalStatus I2cHal::MasterRead(uint16_t addr, uint8_t* data, size_t len) {
+HalStatus I2cHal::MasterRead(uint16_t addr, uint8_t* data, size_t length) {
     uint32_t _s = 0u;
     _s |= I2C->DATA;
     _s |= I2C->STAT;

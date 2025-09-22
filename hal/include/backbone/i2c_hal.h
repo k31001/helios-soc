@@ -45,10 +45,10 @@ class I2cHal {
      * @brief Read a buffer from a target device.
      * @param addr 7/10-bit target address.
      * @param data Receive buffer.
-     * @param len Number of bytes.
+     * @param length Number of bytes.
      * @return HalStatus::Ok on success.
      */
-    HalStatus MasterRead(uint16_t addr, uint8_t* data, size_t len);
+    HalStatus MasterRead(uint16_t addr, uint8_t* data, size_t length);
 
     /**
      * @brief Combined write-then-read with repeated START.
