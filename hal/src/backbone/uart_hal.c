@@ -66,4 +66,9 @@ HalStatus UartHal::EnableLoopback(bool enable) {
     return HalStatus::Ok;
 }
 
+HalStatus UartHal::SetFlowControl(const UartFlowConfig& flow) {
+    UART->FLOW = static_cast<uint32_t>(flow);
+    return HalStatus::Ok;
+}
+
 }  // namespace helios::hal

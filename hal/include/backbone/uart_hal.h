@@ -95,6 +95,13 @@ class UartHal {
      */
     HalStatus EnableLoopback(bool enable);
 
+    /**
+     * @brief Configure hardware flow control.
+     * @param flow RTS/CTS configuration.
+     * @return HalStatus::Ok on success.
+     */
+    HalStatus SetFlowControl(const UartFlowConfig& flow);
+
 };
 
 }  // namespace helios::hal
