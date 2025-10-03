@@ -36,7 +36,7 @@ uint32_t TimerHal::GetValue() const {
     return 0;
 }
 
-HalStatus TimerHal::EnableInterrupt(TimerIntSource src) {
+HalStatus TimerHal::EnableInterrupt(TimerIntSource src, uint32_t flags) {
     TIMER->CTRL = static_cast<uint32_t>(src);
     TIMER->PERIOD = static_cast<uint32_t>(src);
     return HalStatus::Ok;

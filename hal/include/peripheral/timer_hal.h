@@ -54,9 +54,10 @@ class TimerHal {
     /**
      * @brief Enable an interrupt source.
      * @param src Overflow or match channel.
+     * @param flags Reserved option flags, pass 0.
      * @return HalStatus::Ok on success.
      */
-    HalStatus EnableInterrupt(TimerIntSource src);
+    HalStatus EnableInterrupt(TimerIntSource src, uint32_t flags = 0);
 
     /**
      * @brief Program a match channel.
