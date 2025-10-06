@@ -11,7 +11,7 @@ addrmap crypto_aes {
         desc = "Cipher control.";
 
         field {
-            desc = "Enable the AES engine.";
+            desc = "Enable the AES engine. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } EN[0:0] = 0x0;
