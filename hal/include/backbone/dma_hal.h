@@ -26,7 +26,7 @@ class DmaHal {
     HalStatus Init();
 
     /**
-     * @brief Halt the engine and release all channels.
+     * @brief Halt the engine and release all channels (thread-safe).
      * @return HalStatus::Ok on success.
      */
     HalStatus Deinit();
