@@ -51,7 +51,7 @@ HalStatus UartHal::Abort() {
     return HalStatus::Ok;
 }
 
-UartStatus UartHal::GetStatus() const {
+UartStatus UartHal::GetStatus(uint32_t timeout_ms) const {
     return (UartStatus)(UART->STAT);
 }
 

@@ -69,7 +69,7 @@ addrmap spi_master {
         } CS_SEL[1:0] = 0x0;
 
         field {
-            desc = "Per-line CS polarity.";
+            desc = "Per-line CS polarity. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } CS_POL[7:4] = 0x0;

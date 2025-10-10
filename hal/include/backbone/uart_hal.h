@@ -77,9 +77,10 @@ class UartHal {
 
     /**
      * @brief Read the live controller status.
+     * @param timeout_ms Operation timeout in milliseconds.
      * @return Snapshot of the STAT register.
      */
-    UartStatus GetStatus() const;
+    UartStatus GetStatus(uint32_t timeout_ms) const;
 
     /**
      * @brief Update the baud-rate divider.
