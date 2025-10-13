@@ -64,12 +64,6 @@ addrmap i2c_core {
         } NACK[2:2] = 0x0;
 
         field {
-            desc = "Illegal START/STOP detected.";
-            sw = r;
-            hw = w;
-        } BUS_ERR[3:3] = 0x0;
-
-        field {
             desc = "TX buffer empty.";
             sw = r;
             hw = w;
@@ -196,4 +190,21 @@ addrmap i2c_core {
             hw = r;
         } GCALL_EN[4:4] = 0x0;
     } INT_STAT @ 0x0018;
+
+    reg {
+        name = "Bus Timeout";
+        desc = "SMBus-style clock-low timeout.";
+
+        field {
+            desc = "Timeout in ref-clock cycles.";
+            sw = rw;
+            hw = r;
+        } VAL[15:0] = 0x9C40;
+
+        field {
+            desc = "Enable bus timeout detection.";
+            sw = rw;
+            hw = r;
+        } EN[16:16] = 0x0;
+    } TIMEOUT @ 0x001C;
 };
