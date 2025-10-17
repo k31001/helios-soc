@@ -52,7 +52,7 @@ addrmap dma_channel {
         desc = "Transfer source address.";
 
         field {
-            desc = "Byte-aligned source address.";
+            desc = "Byte-aligned source address. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } ADDR[31:0] = 0x0;
