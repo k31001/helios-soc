@@ -79,7 +79,7 @@ addrmap timer_core {
         desc = "Match channel 1 compare value.";
 
         field {
-            desc = "Compare value.";
+            desc = "Compare value. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } VAL[31:0] = 0x0;
