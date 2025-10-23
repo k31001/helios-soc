@@ -65,6 +65,7 @@ class GpioHal {
 
     /**
      * @brief Enable an interrupt on the pin.
+     * @deprecated Use WritePort() instead.
      * @param pin Pin index 0-31.
      * @param type Edge/level and polarity.
      * @return HalStatus::Ok on success.
@@ -85,6 +86,14 @@ class GpioHal {
      * @return HalStatus::Ok on success.
      */
     HalStatus SetDebounce(uint8_t pin, uint16_t cycles);
+
+    /**
+     * @brief Write multiple pins atomically.
+     * @param mask Pins to affect.
+     * @param value Levels for masked pins.
+     * @return HalStatus::Ok on success.
+     */
+    HalStatus WritePort(uint32_t mask, uint32_t value);
 
 };
 

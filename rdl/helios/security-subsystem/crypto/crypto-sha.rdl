@@ -63,7 +63,7 @@ addrmap crypto_sha {
 
         field {
             desc = "Bit length [31:0].";
-            sw = rw;
+            sw = r;
             hw = r;
         } VAL[31:0] = 0x0;
     } MSG_LEN_LO @ 0x000C;

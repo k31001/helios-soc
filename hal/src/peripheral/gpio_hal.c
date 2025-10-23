@@ -57,4 +57,12 @@ HalStatus GpioHal::SetDebounce(uint8_t pin, uint16_t cycles) {
     return HalStatus::Ok;
 }
 
+HalStatus GpioHal::WritePort(uint32_t mask, uint32_t value) {
+    GPIO->DATA_IN = static_cast<uint32_t>(mask);
+    uint32_t _s = 0u;
+    _s |= GPIO->INT_STAT;
+    (void)_s;
+    return HalStatus::Ok;
+}
+
 }  // namespace helios::hal
