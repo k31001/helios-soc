@@ -33,7 +33,7 @@ class RtcHal {
     HalStatus SetTime(uint32_t unix_sec);
 
     /**
-     * @brief Read the current time.
+     * @brief Read the current time (thread-safe).
      * @return Seconds since the Unix epoch.
      */
     uint32_t GetTime() const;
