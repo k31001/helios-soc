@@ -37,7 +37,7 @@ addrmap trng {
             desc = "Random word available.";
             sw = r;
             hw = w;
-        } READY[0:0] = 0x0;
+        } READY[0:0] = 0x1;
 
         field {
             desc = "Health test failure latched.";
