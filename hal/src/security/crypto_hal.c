@@ -6,8 +6,8 @@
 
 namespace helios::hal {
 
-HalStatus AesHal::Init() {
-    CRYPTO->CTRL = 0u;
+HalStatus AesHal::Init(const HalOptions& options) {
+    CRYPTO->CTRL = static_cast<uint32_t>(options);
     return HalStatus::Ok;
 }
 

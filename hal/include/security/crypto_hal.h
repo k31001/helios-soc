@@ -21,9 +21,10 @@ class AesHal {
  public:
     /**
      * @brief Initialize the AES engine.
+     * @param options Extended options block.
      * @return HalStatus::Ok on success.
      */
-    HalStatus Init();
+    HalStatus Init(const HalOptions& options);
 
     /**
      * @brief Select a key from the hardware key ladder.
