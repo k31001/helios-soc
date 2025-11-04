@@ -101,4 +101,21 @@ addrmap rtc {
             hw = w;
         } TICK[1:1] = 0x0;
     } INT_STAT @ 0x0014;
+
+    reg {
+        name = "Tamper Control";
+        desc = "Tamper pin detection.";
+
+        field {
+            desc = "Enable tamper detection.";
+            sw = rw;
+            hw = r;
+        } EN[0:0] = 0x0;
+
+        field {
+            desc = "Tamper pin active polarity.";
+            sw = rw;
+            hw = r;
+        } POL[1:1] = 0x0;
+    } TAMPER_CTRL @ 0x0018;
 };
