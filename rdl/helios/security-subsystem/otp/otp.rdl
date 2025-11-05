@@ -17,12 +17,6 @@ addrmap otp_ctrl {
         } EN[0:0] = 0x0;
 
         field {
-            desc = "Arm programming mode.";
-            sw = rw;
-            hw = r;
-        } PROG_EN[1:1] = 0x0;
-
-        field {
             desc = "Enable ECC correction on reads.";
             sw = rw;
             hw = r;
