@@ -79,7 +79,7 @@ addrmap rtc {
         } PPM[8:0] = 0x0;
 
         field {
-            desc = "Correction direction. 0: slow down, 1: speed up.";
+            desc = "Correction direction. 0: slow down, 1: speed up. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } DIR[12:12] = 0x0;
