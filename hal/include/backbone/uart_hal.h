@@ -103,6 +103,12 @@ class UartHal {
      */
     HalStatus SetFlowControl(const UartFlowConfig& flow);
 
+    /**
+     * @brief Discard all pending data in the RX FIFO.
+     * @return HalStatus::Ok on success.
+     */
+    HalStatus FlushRxFifo();
+
 };
 
 }  // namespace helios::hal

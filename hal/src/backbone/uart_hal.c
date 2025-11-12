@@ -71,4 +71,9 @@ HalStatus UartHal::SetFlowControl(const UartFlowConfig& flow) {
     return HalStatus::Ok;
 }
 
+HalStatus UartHal::FlushRxFifo() {
+    UART->CTRL = 0u;
+    return HalStatus::Ok;
+}
+
 }  // namespace helios::hal
