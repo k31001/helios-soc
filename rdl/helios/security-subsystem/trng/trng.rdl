@@ -94,7 +94,7 @@ addrmap trng {
             desc = "Health failure interrupt enable.";
             sw = rw;
             hw = r;
-        } FAIL[1:1] = 0x0;
+        } FAIL[2:1] = 0x0;
     } INT_EN @ 0x0010;
 
     reg {
