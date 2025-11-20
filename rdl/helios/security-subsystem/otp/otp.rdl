@@ -82,7 +82,7 @@ addrmap otp_ctrl {
             desc = "Fuse word to program.";
             sw = rw;
             hw = r;
-        } DATA[31:0] = 0x0;
+        } DATA[31:0] = 0x23C24D68;
     } WDATA @ 0x0010;
 
     reg {

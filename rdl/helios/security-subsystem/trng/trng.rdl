@@ -103,7 +103,7 @@ addrmap trng {
 
         field {
             desc = "Random data became available.";
-            sw = rw1c;
+            sw = rw;
             hw = w;
         } READY[0:0] = 0x0;
 
