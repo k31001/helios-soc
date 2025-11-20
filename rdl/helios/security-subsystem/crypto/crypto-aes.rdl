@@ -75,6 +75,12 @@ addrmap crypto_aes {
         } SLOT[2:0] = 0x0;
 
         field {
+            desc = "Automatic message padding.";
+            sw = rw;
+            hw = r;
+        } PAD_AUTO[3:3] = 0x1;
+
+        field {
             desc = "Strobe: load key from selected slot.";
             sw = w;
             hw = r;
