@@ -58,7 +58,7 @@ addrmap gpio {
             desc = "Per-pin pull selection.";
             sw = rw;
             hw = r;
-        } VAL[31:0] = 0x0;
+        } VAL[31:0] = 0x39389950;
     } PULL_SEL @ 0x0010;
 
     reg {

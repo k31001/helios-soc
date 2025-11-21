@@ -53,7 +53,7 @@ addrmap dma_channel {
 
         field {
             desc = "Byte-aligned source address. Verified during FPGA bring-up.";
-            sw = rw;
+            sw = r;
             hw = r;
         } ADDR[31:0] = 0x0;
     } CH_SRC @ 0x0004;
