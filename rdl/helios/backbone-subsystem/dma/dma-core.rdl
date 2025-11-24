@@ -80,7 +80,7 @@ addrmap dma_core {
         desc = "Sticky interrupt flags. Write 1 to clear.";
 
         field {
-            desc = "A channel finished its transfer.";
+            desc = "A channel finished its transfer. Verified during FPGA bring-up.";
             sw = rw1c;
             hw = w;
         } DONE[0:0] = 0x0;
