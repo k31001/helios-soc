@@ -91,7 +91,7 @@ addrmap otp_ctrl {
 
         field {
             desc = "Write 0x50524F47 to arm a program pulse.";
-            sw = w;
+            sw = rw;
             hw = r;
         } KEY[31:0] = 0x0;
     } PROG_KEY @ 0x0014;
