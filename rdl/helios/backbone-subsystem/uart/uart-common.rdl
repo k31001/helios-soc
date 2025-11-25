@@ -41,6 +41,12 @@ addrmap uart_common {
         } LOOPBACK[6:6] = 0x0;
 
         field {
+            desc = "Enable DMA handshake for RX FIFO.";
+            sw = rw;
+            hw = r;
+        } DMA_RX_EN[7:7] = 0x0;
+
+        field {
             desc = "Transmitter enable.";
             sw = rw;
             hw = r;
