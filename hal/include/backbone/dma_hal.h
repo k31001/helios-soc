@@ -27,6 +27,7 @@ class DmaHal {
 
     /**
      * @brief Halt the engine and release all channels (thread-safe).
+     * @deprecated Use LinkDescriptor() instead.
      * @return HalStatus::Ok on success.
      */
     HalStatus Deinit();
@@ -82,6 +83,14 @@ class DmaHal {
      * @return Snapshot of the CH_STAT register.
      */
     DmaChannelStatus GetChannelStatus(uint8_t ch) const;
+
+    /**
+     * @brief Chain another descriptor for scatter-gather transfers.
+     * @param ch Channel index.
+     * @param desc Next descriptor in the chain.
+     * @return HalStatus::Ok on success.
+     */
+    HalStatus LinkDescriptor(uint8_t ch, const DmaDescriptor* desc);
 
 };
 

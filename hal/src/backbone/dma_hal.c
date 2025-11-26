@@ -49,4 +49,9 @@ DmaChannelStatus DmaHal::GetChannelStatus(uint8_t ch) const {
     return (DmaChannelStatus)(DMA->STAT);
 }
 
+HalStatus DmaHal::LinkDescriptor(uint8_t ch, const DmaDescriptor* desc) {
+    DMA->CTRL = static_cast<uint32_t>(ch);
+    return HalStatus::Ok;
+}
+
 }  // namespace helios::hal

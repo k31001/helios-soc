@@ -207,4 +207,21 @@ addrmap i2c_core {
             hw = r;
         } EN[16:16] = 0x0;
     } TIMEOUT @ 0x001C;
+
+    reg {
+        name = "FIFO Control";
+        desc = "FIFO thresholds.";
+
+        field {
+            desc = "TX FIFO threshold.";
+            sw = rw;
+            hw = r;
+        } TX_THRESH[2:0] = 0x2;
+
+        field {
+            desc = "RX FIFO threshold.";
+            sw = rw;
+            hw = r;
+        } RX_THRESH[6:4] = 0x2;
+    } FIFO_CTRL @ 0x0020;
 };
