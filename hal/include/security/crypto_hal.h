@@ -74,9 +74,10 @@ class AesHal {
     /**
      * @brief Suspend the current operation and save its context.
      * @param ctx Output context storage.
+     * @param flags Reserved option flags, pass 0.
      * @return HalStatus::Ok on success.
      */
-    HalStatus Suspend(AesContext* ctx);
+    HalStatus Suspend(AesContext* ctx, uint32_t flags = 0);
 
     /**
      * @brief Resume a suspended operation.

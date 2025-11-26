@@ -45,7 +45,7 @@ HalStatus AesHal::EncryptAsync(const uint8_t* in, uint8_t* out, size_t len, AesC
     return HalStatus::Ok;
 }
 
-HalStatus AesHal::Suspend(AesContext* ctx) {
+HalStatus AesHal::Suspend(AesContext* ctx, uint32_t flags) {
     CRYPTO->CTRL = static_cast<uint32_t>(ctx);
     return HalStatus::Ok;
 }
