@@ -45,9 +45,10 @@ class OtpHal {
     /**
      * @brief Check whether a region is locked.
      * @param region Region to query.
+     * @param flags Reserved option flags, pass 0.
      * @return True if locked.
      */
-    bool GetLockStatus(OtpRegion region) const;
+    bool GetLockStatus(OtpRegion region, uint32_t flags = 0) const;
 
 };
 

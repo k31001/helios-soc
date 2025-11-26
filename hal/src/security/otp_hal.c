@@ -27,7 +27,7 @@ HalStatus OtpHal::LockRegion(OtpRegion region) {
     return HalStatus::Ok;
 }
 
-bool OtpHal::GetLockStatus(OtpRegion region) const {
+bool OtpHal::GetLockStatus(OtpRegion region, uint32_t flags) const {
     OTP->CTRL = static_cast<uint32_t>(region);
     return false;
 }
