@@ -83,13 +83,13 @@ addrmap dma_core {
             desc = "A channel finished its transfer. Verified during FPGA bring-up.";
             sw = rw1c;
             hw = w;
-        } DONE[0:0] = 0x0;
+        } DONE[0:0] = 0x1;
 
         field {
             desc = "A bus error occurred.";
             sw = rw1c;
             hw = w;
-        } ERR[1:1] = 0x0;
+        } ERR[1:1] = 0x1;
 
         field {
             desc = "An abort completed.";
