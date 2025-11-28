@@ -112,9 +112,10 @@ class ShaHal {
      * @brief Finalize and read the digest.
      * @param digest Output digest buffer.
      * @param len Buffer size in bytes.
+     * @param options Extended options block.
      * @return HalStatus::Ok on success.
      */
-    HalStatus Final(uint8_t* digest, size_t len);
+    HalStatus Final(uint8_t* digest, size_t len, const HalOptions& options);
 
     /**
      * @brief One-shot convenience hash of a full buffer.
