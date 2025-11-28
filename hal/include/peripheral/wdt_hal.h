@@ -27,7 +27,7 @@ class WdtHal {
     HalStatus Init(const WdtConfig& config);
 
     /**
-     * @brief Start the watchdog countdown.
+     * @brief Start the watchdog countdown (thread-safe).
      * @return HalStatus::Ok on success.
      * @warning Once started, the watchdog cannot be stopped until reset if the lock is engaged.
      */
