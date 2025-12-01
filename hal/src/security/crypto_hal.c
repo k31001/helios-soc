@@ -16,7 +16,7 @@ HalStatus AesHal::SetKey(AesKeySlot slot, AesKeySize size) {
     return HalStatus::Ok;
 }
 
-HalStatus AesHal::SetIv(const uint8_t* iv, size_t len) {
+HalStatus AesHal::SetIv(const uint8_t* iv, uint32_t len) {
     CRYPTO->IV_CTRL = static_cast<uint32_t>(iv);
     return HalStatus::Ok;
 }

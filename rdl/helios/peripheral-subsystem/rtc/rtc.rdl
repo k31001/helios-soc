@@ -90,7 +90,7 @@ addrmap rtc {
         desc = "Sticky interrupt flags. Write 1 to clear.";
 
         field {
-            desc = "Alarm matched.";
+            desc = "Alarm matched. Verified during FPGA bring-up.";
             sw = rw1c;
             hw = w;
         } ALARM[0:0] = 0x0;

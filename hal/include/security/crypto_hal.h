@@ -41,7 +41,7 @@ class AesHal {
      * @param len IV length in bytes.
      * @return HalStatus::Ok on success.
      */
-    HalStatus SetIv(const uint8_t* iv, size_t len);
+    HalStatus SetIv(const uint8_t* iv, uint32_t len);
 
     /**
      * @brief Run a blocking encryption.
