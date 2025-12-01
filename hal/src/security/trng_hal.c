@@ -11,7 +11,7 @@ HalStatus TrngHal::Init() {
     return HalStatus::Ok;
 }
 
-HalStatus TrngHal::GetRandom(uint8_t* out, size_t len) {
+HalStatus TrngHal::GetRandom(uint8_t* out, size_t len, const HalOptions& options) {
     uint32_t _s = 0u;
     _s |= TRNG->DATA;
     _s |= TRNG->STAT;

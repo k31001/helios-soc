@@ -29,9 +29,10 @@ class TrngHal {
      * @brief Fill a buffer with conditioned random bytes.
      * @param out Output buffer.
      * @param len Bytes requested.
+     * @param options Extended options block.
      * @return HalStatus::Ok, HalStatus::Health if a health test failed.
      */
-    HalStatus GetRandom(uint8_t* out, size_t len);
+    HalStatus GetRandom(uint8_t* out, size_t len, const HalOptions& options);
 
     /**
      * @brief Force an on-demand health test pass.

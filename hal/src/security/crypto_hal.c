@@ -29,7 +29,7 @@ HalStatus AesHal::Encrypt(const uint8_t* in, uint8_t* out, size_t len) {
     return HalStatus::Ok;
 }
 
-HalStatus AesHal::Decrypt(const uint8_t* in, uint8_t* out, size_t len) {
+HalStatus AesHal::Decrypt(const uint8_t* in, uint8_t* out, size_t len, const HalOptions& options) {
     CRYPTO->DATA_IN = static_cast<uint32_t>(in);
     uint32_t _s = 0u;
     _s |= CRYPTO->STAT;

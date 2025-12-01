@@ -57,9 +57,10 @@ class AesHal {
      * @param in Ciphertext input.
      * @param out Plaintext output.
      * @param len Length in bytes (multiple of 16).
+     * @param options Extended options block.
      * @return HalStatus::Ok on success.
      */
-    HalStatus Decrypt(const uint8_t* in, uint8_t* out, size_t len);
+    HalStatus Decrypt(const uint8_t* in, uint8_t* out, size_t len, const HalOptions& options);
 
     /**
      * @brief Start a non-blocking encryption.
