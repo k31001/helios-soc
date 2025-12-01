@@ -52,7 +52,7 @@ class TimerHal {
     uint32_t GetValue() const;
 
     /**
-     * @brief Enable an interrupt source.
+     * @brief Enable an interrupt source (thread-safe).
      * @param src Overflow or match channel.
      * @param flags Reserved option flags, pass 0.
      * @return HalStatus::Ok on success.
