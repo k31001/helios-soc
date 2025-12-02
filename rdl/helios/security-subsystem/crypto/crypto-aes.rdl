@@ -105,7 +105,7 @@ addrmap crypto_aes {
 
         field {
             desc = "Strobe: latch IV registers.";
-            sw = w;
+            sw = rw;
             hw = r;
         } LOAD[0:0] = 0x0;
 
