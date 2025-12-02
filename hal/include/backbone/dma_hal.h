@@ -45,7 +45,7 @@ class DmaHal {
      * @param ch Channel index.
      * @return HalStatus::Ok on success.
      */
-    HalStatus Start(uint8_t ch);
+    HalStatus Start(uint16_t ch);
 
     /**
      * @brief Stop a channel at the next beat boundary.

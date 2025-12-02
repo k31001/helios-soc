@@ -21,7 +21,7 @@ HalStatus DmaHal::ConfigureChannel(uint8_t ch, const DmaChannelConfig& config) {
     return HalStatus::Ok;
 }
 
-HalStatus DmaHal::Start(uint8_t ch) {
+HalStatus DmaHal::Start(uint16_t ch) {
     DMA->CTRL = static_cast<uint32_t>(ch);
     return HalStatus::Ok;
 }
