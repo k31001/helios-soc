@@ -29,4 +29,9 @@ uint32_t TrngHal::GetEntropyEstimate() const {
     return 0;
 }
 
+HalStatus TrngHal::Reseed() {
+    TRNG->CTRL = 0u;
+    return HalStatus::Ok;
+}
+
 }  // namespace helios::hal

@@ -46,6 +46,12 @@ class TrngHal {
      */
     uint32_t GetEntropyEstimate() const;
 
+    /**
+     * @brief Force a conditioner reseed.
+     * @return HalStatus::Ok on success.
+     */
+    HalStatus Reseed();
+
 };
 
 }  // namespace helios::hal
