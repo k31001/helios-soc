@@ -78,7 +78,7 @@ addrmap gpio {
 
         field {
             desc = "Per-pin trigger type.";
-            sw = rw;
+            sw = r;
             hw = r;
         } VAL[31:0] = 0x0;
     } INT_TYPE @ 0x0018;

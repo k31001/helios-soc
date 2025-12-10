@@ -63,7 +63,7 @@ addrmap spi_slave {
         desc = "Transmit/receive data window.";
 
         field {
-            desc = "Write to stage TX word, read to fetch RX word.";
+            desc = "Write to stage TX word, read to fetch RX word. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } DATA[31:0] = 0x0;
