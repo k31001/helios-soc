@@ -91,6 +91,12 @@ class TimerHal {
      */
     HalStatus SetDeadtime(uint8_t rise, uint8_t fall);
 
+    /**
+     * @brief Read the last captured counter value.
+     * @return Captured value.
+     */
+    uint32_t Capture() const;
+
 };
 
 }  // namespace helios::hal

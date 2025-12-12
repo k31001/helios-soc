@@ -63,4 +63,12 @@ HalStatus TimerHal::SetDeadtime(uint8_t rise, uint8_t fall) {
     return HalStatus::Ok;
 }
 
+uint32_t TimerHal::Capture() const {
+    uint32_t _s = 0u;
+    _s |= TIMER->VALUE;
+    _s |= TIMER->INT_STAT;
+    (void)_s;
+    return 0;
+}
+
 }  // namespace helios::hal
