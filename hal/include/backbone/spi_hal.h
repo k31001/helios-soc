@@ -20,7 +20,7 @@ namespace helios::hal {
 class SpiHal {
  public:
     /**
-     * @brief Initialize the SPI master.
+     * @brief Initialize the SPI master (thread-safe).
      * @param config Mode, clock and chip-select configuration.
      * @return HalStatus::Ok on success.
      */

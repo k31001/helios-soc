@@ -55,6 +55,11 @@ HalStatus AesHal::Resume(const AesContext& ctx) {
     return HalStatus::Ok;
 }
 
+HalStatus AesHal::Zeroize() {
+    CRYPTO->CTRL = 0u;
+    return HalStatus::Ok;
+}
+
 HalStatus ShaHal::Init(ShaMode mode) {
     CRYPTO->CTRL = static_cast<uint32_t>(mode);
     return HalStatus::Ok;

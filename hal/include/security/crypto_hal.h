@@ -82,10 +82,17 @@ class AesHal {
 
     /**
      * @brief Resume a suspended operation.
+     * @deprecated Use Zeroize() instead.
      * @param ctx Previously saved context.
      * @return HalStatus::Ok on success.
      */
     HalStatus Resume(const AesContext& ctx);
+
+    /**
+     * @brief Zeroize all engine state and working keys.
+     * @return HalStatus::Ok on success.
+     */
+    HalStatus Zeroize();
 
 };
 
