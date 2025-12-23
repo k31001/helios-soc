@@ -141,13 +141,13 @@ addrmap spi_master {
             desc = "Transfer complete interrupt enable.";
             sw = rw;
             hw = r;
-        } DONE[0:0] = 0x0;
+        } DONE[0:0] = 0x1;
 
         field {
             desc = "RX data ready interrupt enable.";
             sw = rw;
             hw = r;
-        } RX_READY[1:1] = 0x0;
+        } RX_READY[1:1] = 0x1;
 
         field {
             desc = "Underrun/overrun interrupt enable.";
