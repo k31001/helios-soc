@@ -36,7 +36,7 @@ addrmap spi_master {
 
         field {
             desc = "Word length minus one.";
-            sw = rw;
+            sw = r;
             hw = r;
         } WORD_LEN[8:4] = 0x7;
 

@@ -6,8 +6,8 @@
 
 namespace helios::hal {
 
-HalStatus DmaHal::Init() {
-    DMA->CTRL = 0u;
+HalStatus DmaHal::Init(const HalOptions& options) {
+    DMA->CTRL = static_cast<uint32_t>(options);
     return HalStatus::Ok;
 }
 

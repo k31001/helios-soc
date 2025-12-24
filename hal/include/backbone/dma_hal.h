@@ -21,9 +21,10 @@ class DmaHal {
  public:
     /**
      * @brief Initialize the DMA engine and reset all channels.
+     * @param options Extended options block.
      * @return HalStatus::Ok on success.
      */
-    HalStatus Init();
+    HalStatus Init(const HalOptions& options);
 
     /**
      * @brief Halt the engine and release all channels (thread-safe).
