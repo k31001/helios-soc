@@ -109,7 +109,7 @@ class ShaHal {
     HalStatus Init(ShaMode mode);
 
     /**
-     * @brief Absorb a message chunk.
+     * @brief Absorb a message chunk (thread-safe).
      * @param data Message chunk.
      * @param len Chunk length in bytes.
      * @return HalStatus::Ok on success.

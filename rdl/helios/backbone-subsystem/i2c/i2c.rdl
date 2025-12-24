@@ -98,7 +98,7 @@ addrmap i2c_core {
         desc = "Transmit/receive data window.";
 
         field {
-            desc = "Write to transmit, read to receive.";
+            desc = "Write to transmit, read to receive. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } DATA[7:0] = 0x0;
