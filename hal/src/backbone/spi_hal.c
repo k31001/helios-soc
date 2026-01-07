@@ -33,7 +33,7 @@ HalStatus SpiHal::TransferAsync(const uint8_t* tx, uint8_t* rx, size_t len, SpiC
     return HalStatus::Ok;
 }
 
-HalStatus SpiHal::SetMode(SpiMode mode) {
+HalStatus SpiHal::SetMode(SpiMode mode, const HalOptions& options) {
     SPI->CTRL = static_cast<uint32_t>(mode);
     return HalStatus::Ok;
 }

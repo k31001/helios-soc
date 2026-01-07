@@ -55,9 +55,10 @@ class SpiHal {
     /**
      * @brief Change the SPI mode.
      * @param mode CPOL/CPHA mode 0-3.
+     * @param options Extended options block.
      * @return HalStatus::Ok on success.
      */
-    HalStatus SetMode(SpiMode mode);
+    HalStatus SetMode(SpiMode mode, const HalOptions& options);
 
     /**
      * @brief Change the SCK divider.
