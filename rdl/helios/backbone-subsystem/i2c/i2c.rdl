@@ -132,7 +132,7 @@ addrmap i2c_core {
         desc = "Per-source interrupt enables.";
 
         field {
-            desc = "Transfer complete interrupt enable.";
+            desc = "Transfer complete interrupt enable. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } DONE[0:0] = 0x0;
