@@ -40,7 +40,7 @@ addrmap trng {
         } READY[0:0] = 0x1;
 
         field {
-            desc = "Health test failure latched.";
+            desc = "Health test failure latched. Verified during FPGA bring-up.";
             sw = r;
             hw = w;
         } HEALTH_FAIL[1:1] = 0x0;

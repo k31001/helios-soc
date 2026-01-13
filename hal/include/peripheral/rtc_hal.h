@@ -47,9 +47,10 @@ class RtcHal {
 
     /**
      * @brief Disarm the alarm and clear any pending flag.
+     * @param timeout_ms Operation timeout in milliseconds.
      * @return HalStatus::Ok on success.
      */
-    HalStatus ClearAlarm();
+    HalStatus ClearAlarm(uint32_t timeout_ms);
 
     /**
      * @brief Apply digital frequency calibration.

@@ -29,8 +29,8 @@ HalStatus RtcHal::SetAlarm(uint32_t unix_sec) {
     return HalStatus::Ok;
 }
 
-HalStatus RtcHal::ClearAlarm() {
-    RTC->INT_STAT = 0u;
+HalStatus RtcHal::ClearAlarm(uint32_t timeout_ms) {
+    RTC->INT_STAT = static_cast<uint32_t>(timeout_ms);
     return HalStatus::Ok;
 }
 
