@@ -73,7 +73,7 @@ HalStatus ShaHal::Update(const uint8_t* data, size_t len) {
     return HalStatus::Ok;
 }
 
-HalStatus ShaHal::Final(uint8_t* digest, size_t len, const HalOptions& options) {
+HalStatus ShaHal::Final(uint8_t* digest, size_t length, const HalOptions& options) {
     CRYPTO->DATA_IN = static_cast<uint32_t>(digest);
     uint32_t _s = 0u;
     _s |= CRYPTO->STAT;
