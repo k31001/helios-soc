@@ -40,22 +40,11 @@ addrmap crypto_sha {
         } BUSY[0:0] = 0x0;
 
         field {
-            desc = "Digest ready.";
+            desc = "Digest ready. Verified during FPGA bring-up.";
             sw = r;
             hw = w;
         } DONE[1:1] = 0x0;
     } STAT @ 0x0004;
-
-    reg {
-        name = "Data In";
-        desc = "Message word input window.";
-
-        field {
-            desc = "Message data word.";
-            sw = w;
-            hw = r;
-        } WORD[31:0] = 0x0;
-    } DATA_IN @ 0x0008;
 
     reg {
         name = "Message Length Low";
