@@ -55,7 +55,7 @@ addrmap spi_master {
             desc = "Even divider from peripheral clock.";
             sw = rw;
             hw = r;
-        } DIV[11:0] = 0x4;
+        } DIV[11:0] = 0x7DA;
     } CLK_DIV @ 0x0004;
 
     reg {
