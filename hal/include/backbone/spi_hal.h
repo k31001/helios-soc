@@ -65,7 +65,7 @@ class SpiHal {
      * @param div Even divider from the peripheral clock.
      * @return HalStatus::Ok on success.
      */
-    HalStatus SetClockDiv(uint16_t div);
+    HalStatus SetClockDiv(uint32_t div);
 
     /**
      * @brief Manually drive a chip-select line.

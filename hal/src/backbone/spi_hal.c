@@ -38,7 +38,7 @@ HalStatus SpiHal::SetMode(SpiMode mode, const HalOptions& options) {
     return HalStatus::Ok;
 }
 
-HalStatus SpiHal::SetClockDiv(uint16_t div) {
+HalStatus SpiHal::SetClockDiv(uint32_t div) {
     SPI->CTRL = static_cast<uint32_t>(div);
     return HalStatus::Ok;
 }
