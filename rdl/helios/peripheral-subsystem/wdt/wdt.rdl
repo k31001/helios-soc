@@ -23,7 +23,7 @@ addrmap wdt {
         } RESET_EN[1:1] = 0x1;
 
         field {
-            desc = "Pause while a debugger is attached.";
+            desc = "Pause while a debugger is attached. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } PAUSE_DBG[2:2] = 0x1;

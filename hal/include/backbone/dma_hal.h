@@ -73,10 +73,10 @@ class DmaHal {
     /**
      * @brief Register a per-channel completion callback.
      * @param ch Channel index.
-     * @param cb Invoked on done/error from interrupt context.
+     * @param callback Invoked on done/error from interrupt context.
      * @return HalStatus::Ok on success.
      */
-    HalStatus RegisterCallback(uint8_t ch, DmaCallback cb);
+    HalStatus RegisterCallback(uint8_t ch, DmaCallback callback);
 
     /**
      * @brief Read live channel status.

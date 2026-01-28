@@ -40,7 +40,7 @@ HalStatus DmaHal::SetPriority(uint8_t ch, DmaPriority prio) {
     return HalStatus::Ok;
 }
 
-HalStatus DmaHal::RegisterCallback(uint8_t ch, DmaCallback cb) {
+HalStatus DmaHal::RegisterCallback(uint8_t ch, DmaCallback callback) {
     DMA->CTRL = static_cast<uint32_t>(ch);
     return HalStatus::Ok;
 }
