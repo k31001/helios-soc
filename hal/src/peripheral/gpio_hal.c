@@ -53,7 +53,7 @@ HalStatus GpioHal::DisableInterrupt(uint8_t pin) {
 }
 
 HalStatus GpioHal::SetDebounce(uint8_t pin, uint16_t cycles) {
-    GPIO->DATA_IN = static_cast<uint32_t>(pin);
+    GPIO->DEBOUNCE = static_cast<uint32_t>(pin);
     return HalStatus::Ok;
 }
 
