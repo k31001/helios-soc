@@ -36,23 +36,6 @@ addrmap uart_config {
     } FIFO_CTRL @ 0x0000;
 
     reg {
-        name = "FIFO Status";
-        desc = "Current FIFO fill levels.";
-
-        field {
-            desc = "Number of entries in the TX FIFO.";
-            sw = r;
-            hw = w;
-        } TX_LEVEL[4:0] = 0x0;
-
-        field {
-            desc = "Number of entries in the RX FIFO.";
-            sw = r;
-            hw = w;
-        } RX_LEVEL[12:8] = 0x0;
-    } FIFO_STAT @ 0x0004;
-
-    reg {
         name = "Flow Control";
         desc = "Hardware flow-control configuration.";
 

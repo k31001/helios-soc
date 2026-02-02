@@ -84,7 +84,7 @@ class I2cHal {
     HalStatus Reset();
 
     /**
-     * @brief Read controller status flags.
+     * @brief Read controller status flags (thread-safe).
      * @return Snapshot of the STAT register.
      */
     I2cStatus GetStatus() const;
