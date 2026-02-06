@@ -22,7 +22,7 @@ HalStatus OtpHal::Write(uint16_t addr, uint32_t value) {
     return HalStatus::Ok;
 }
 
-HalStatus OtpHal::LockRegion(OtpRegion region) {
+HalStatus OtpHal::LockRegion(OtpRegion region, const HalOptions& options) {
     OTP->CTRL = static_cast<uint32_t>(region);
     return HalStatus::Ok;
 }

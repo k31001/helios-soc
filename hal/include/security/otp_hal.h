@@ -38,9 +38,10 @@ class OtpHal {
     /**
      * @brief Lock a region until the next reset.
      * @param region Region to lock.
+     * @param options Extended options block.
      * @return HalStatus::Ok on success.
      */
-    HalStatus LockRegion(OtpRegion region);
+    HalStatus LockRegion(OtpRegion region, const HalOptions& options);
 
     /**
      * @brief Check whether a region is locked.
