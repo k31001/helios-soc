@@ -74,6 +74,12 @@ addrmap trng {
         } RCT_THRESH[5:0] = 0x1F;
 
         field {
+            desc = "Enable startup bias check.";
+            sw = rw;
+            hw = r;
+        } BIAS_CHK_EN[6:6] = 0x0;
+
+        field {
             desc = "Adaptive proportion test cutoff.";
             sw = rw;
             hw = r;

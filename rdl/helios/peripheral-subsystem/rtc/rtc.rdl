@@ -52,7 +52,7 @@ addrmap rtc {
 
         field {
             desc = "Sub-second count (32768 Hz).";
-            sw = r;
+            sw = rw;
             hw = w;
         } VAL[14:0] = 0x0;
     } SUBSEC @ 0x0008;
