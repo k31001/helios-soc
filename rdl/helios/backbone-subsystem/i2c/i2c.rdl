@@ -138,7 +138,7 @@ addrmap i2c_core {
         } DONE[0:0] = 0x0;
 
         field {
-            desc = "NACK received interrupt enable.";
+            desc = "NACK received interrupt enable. Verified during FPGA bring-up.";
             sw = rw;
             hw = r;
         } NACK[1:1] = 0x0;
