@@ -128,12 +128,12 @@ class ShaHal {
     /**
      * @brief One-shot convenience hash of a full buffer.
      * @param data Whole message.
-     * @param len Message length.
+     * @param length Message length.
      * @param out Output digest buffer.
      * @param timeout_ms Operation timeout in milliseconds.
      * @return HalStatus::Ok on success.
      */
-    HalStatus Digest(const uint8_t* data, size_t len, uint8_t* out, uint32_t timeout_ms);
+    HalStatus Digest(const uint8_t* data, size_t length, uint8_t* out, uint32_t timeout_ms);
 
 };
 
