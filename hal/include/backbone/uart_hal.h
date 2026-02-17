@@ -53,11 +53,11 @@ class UartHal {
     /**
      * @brief Receive bytes from the UART (blocking).
      * @param data Pointer to the receive buffer.
-     * @param len Maximum number of bytes to receive.
+     * @param length Maximum number of bytes to receive.
      * @param timeout_ms Timeout in milliseconds.
      * @return Number of bytes received, or a negative HalStatus on error.
      */
-    int32_t Receive(uint8_t* data, size_t len, uint32_t timeout_ms);
+    int32_t Receive(uint8_t* data, size_t length, uint32_t timeout_ms);
 
     /**
      * @brief Start a non-blocking transmit.

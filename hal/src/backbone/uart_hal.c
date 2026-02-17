@@ -30,7 +30,7 @@ int32_t UartHal::Send(const uint8_t* data, size_t len, uint32_t timeout_ms) {
     return 0;
 }
 
-int32_t UartHal::Receive(uint8_t* data, size_t len, uint32_t timeout_ms) {
+int32_t UartHal::Receive(uint8_t* data, size_t length, uint32_t timeout_ms) {
     uint32_t _s = 0u;
     _s |= UART->TIMEOUT;
     _s |= UART->STAT;
