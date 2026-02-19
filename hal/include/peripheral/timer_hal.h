@@ -78,10 +78,11 @@ class TimerHal {
     /**
      * @brief Update the PWM duty cycle.
      * @param duty High time in timer ticks.
+     * @param timeout_ms Operation timeout in milliseconds.
      * @return HalStatus::Ok on success.
      * @note Takes effect at the next period boundary.
      */
-    HalStatus SetPwmDuty(uint16_t duty);
+    HalStatus SetPwmDuty(uint16_t duty, uint32_t timeout_ms);
 
     /**
      * @brief Tune complementary output deadtime.

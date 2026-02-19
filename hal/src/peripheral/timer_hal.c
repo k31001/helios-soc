@@ -53,7 +53,7 @@ HalStatus TimerHal::ConfigurePwm(const PwmConfig& config) {
     return HalStatus::Ok;
 }
 
-HalStatus TimerHal::SetPwmDuty(uint16_t duty) {
+HalStatus TimerHal::SetPwmDuty(uint16_t duty, uint32_t timeout_ms) {
     TIMER->PWM_CTRL = static_cast<uint32_t>(duty);
     return HalStatus::Ok;
 }
