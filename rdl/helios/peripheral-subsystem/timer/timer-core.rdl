@@ -126,7 +126,7 @@ addrmap timer_core {
 
         field {
             desc = "Match 1 hit.";
-            sw = rw1c;
+            sw = rw;
             hw = w;
         } MATCH1[2:2] = 0x0;
     } INT_STAT @ 0x0018;

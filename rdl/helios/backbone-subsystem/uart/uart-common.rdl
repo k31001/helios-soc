@@ -180,4 +180,21 @@ addrmap uart_common {
             hw = r;
         } FRAC[19:16] = 0x0;
     } BAUD @ 0x0010;
+
+    reg {
+        name = "Debug";
+        desc = "Debug visibility into internal state.";
+
+        field {
+            desc = "Internal FSM state.";
+            sw = r;
+            hw = w;
+        } FSM_STATE[3:0] = 0x0;
+
+        field {
+            desc = "Live RX shift register.";
+            sw = r;
+            hw = w;
+        } RX_SHIFT[15:8] = 0x0;
+    } DBG @ 0x0014;
 };
